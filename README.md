@@ -1,6 +1,7 @@
 # Minesweeper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.  
+Play the game ! https://reifocs.github.io/angular-minesweeper/
 
 ## Development server
 
