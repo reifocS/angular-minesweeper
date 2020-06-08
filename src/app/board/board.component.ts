@@ -36,6 +36,7 @@ export class BoardComponent implements OnInit {
     cell.setStateTo('revealed');
     --this.remainingCells;
     if (count === 0) {
+      //clear surrounding cells
       let { x, y } = cell.getCoord();
       for (let i = 0; i < Board.xDirections.length; ++i) {
         let deltaX = Board.xDirections[i];
@@ -61,22 +62,6 @@ export class BoardComponent implements OnInit {
   }
 
 
-  private propagateClear = (cell: Cell) => {
-    let { x, y } = cell.getCoord();
-    for (let i = 0; i < Board.xDirections.length; ++i) {
-      let deltaX = Board.xDirections[i];
-      let deltaY = Board.yDirections[i];
-      let adjacentCell = this.board[x + deltaX] && this.board[x + deltaX][y + deltaY]
-      if (adjacentCell) {
-        if (adjacentCell.isMined() || adjacentCell.getState() === 'revealed')
-          continue;
-        adjacentCell.setStateTo('revealed')
-        --this.remainingCells;
-        if (adjacentCell.getNearbyMines() === 0)
-          this.propagateClear(adjacentCell);
-      }
-    }
-  }
 
   public flagCell(cell: Cell) {
     cell.flag();
