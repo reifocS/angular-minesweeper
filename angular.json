@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "minesweeper"
+    }
+  },
+  "defaultProject": "minesweeper",
+  "cli": {
+    "analytics": false
+  }
 }

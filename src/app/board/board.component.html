@@ -1,0 +1,24 @@
+<div class="text-row">
+    <p>Remaining cells : {{remainingCells}}</p>
+    <p *ngIf="gameState === 'won'">You won 🎉🎉🎉!!</p>
+    <button *ngIf="gameState !== 'pending'" (click)="test()">Replay</button>
+    <p *ngIf="gameState === 'lost'">You lost 😞</p>
+</div>
+<table>
+    <tr *ngFor="let row of board; index as x">
+        <td (click)="onClickCell(cell)" *ngFor="let cell of row; index as y"
+        [class.revealed]="cell.getState() === 'revealed'"
+            (contextmenu)="$event.preventDefault(); flagCell(cell)">
+            <div *ngIf="cell.getState() === 'flagged'">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" />
+                </svg>
+            </div>
+            <div *ngIf="cell.getState() === 'revealed' && !cell.isMined()">{{cell.getNearbyMines()}}</div>
+            <div *ngIf="cell.isMined() && cell.getState() === 'revealed'">
+                💣
+            </div>
+            <div *ngIf="cell.getState() === 'available'">  </div>
+        </td>
+    </tr>
+</table>
